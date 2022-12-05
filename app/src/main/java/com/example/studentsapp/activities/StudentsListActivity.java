@@ -1,5 +1,7 @@
 package com.example.studentsapp.activities;
 
+import static com.example.studentsapp.model.Consts.STUDENT_POSITION_KEY;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +38,7 @@ public class StudentsListActivity extends AppCompatActivity {
             currentlyModifiedStudentPos.set(pos);
             Log.d("ItemClick", "Clicked item. Redirecting to view single activity");
             Intent intent = new Intent(getApplicationContext(), ViewStudentActivity.class);
-            intent.putExtra("studentPosition", pos);
+            intent.putExtra(STUDENT_POSITION_KEY, pos);
             startActivity(intent);
         });
     }
@@ -44,6 +46,10 @@ public class StudentsListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.notifyItemChanged(currentlyModifiedStudentPos.get());
+        int modifiedPosition = currentlyModifiedStudentPos.get();
+        if (Students.getInstance().getStudent(modifiedPosition).isDeleted()){
+            adapter.notifyItemRemoved(modifiedPosition);
+        }
+        else adapter.notifyItemChanged(modifiedPosition);
     }
 }

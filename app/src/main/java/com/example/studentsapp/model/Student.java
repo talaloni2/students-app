@@ -6,6 +6,7 @@ public class Student {
     boolean isChecked;
     String phone;
     String address;
+    boolean deleted;
 
     public Student(String id, String name, boolean isChecked, String phone, String address) {
         this.id = id;
@@ -13,6 +14,15 @@ public class Student {
         this.isChecked = isChecked;
         this.phone = phone;
         this.address = address;
+        this.deleted = false;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public String getPhone() {

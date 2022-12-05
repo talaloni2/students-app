@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
     <TextView
         android:id="@+id/viewstudent_namevalue"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/viewstudent_namelabel"
         app:layout_constraintStart_toStartOf="@+id/viewstudent_addressvalue"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
 
     <TextView
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_namelabel"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
     <TextView
         android:id="@+id/viewstudent_idvalue"
@@ -59,7 +59,7 @@
         android:text="@string/default_textview_value"
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_namevalue"
         app:layout_constraintStart_toStartOf="@+id/viewstudent_addressvalue"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
 
     <TextView
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_idlabel"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
     <TextView
         android:id="@+id/viewstudent_phonevalue"
@@ -81,7 +81,7 @@
         android:text="@string/default_textview_value"
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_idvalue"
         app:layout_constraintStart_toStartOf="@+id/viewstudent_addressvalue"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
 
     <TextView
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_phonelabel"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
     <TextView
         android:id="@+id/viewstudent_addressvalue"
@@ -104,7 +104,7 @@
         android:text="@string/default_textview_value"
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_phonevalue"
         app:layout_constraintStart_toEndOf="@+id/viewstudent_addresslabel"
-        android:textSize="17sp"
+        android:textSize="15sp"
         />
 
     <CheckBox
@@ -114,7 +114,8 @@
         app:layout_constraintTop_toBottomOf="@+id/viewstudent_addresslabel"
         app:layout_constraintStart_toStartOf="@+id/viewstudent_addresslabel"
         android:layout_marginTop="30dp"
-        android:text="@string/checked_label"/>
+        android:text="@string/checked_label"
+        android:textSize="15sp"/>
 
     <Button
         android:id="@+id/viewstudent_edit"

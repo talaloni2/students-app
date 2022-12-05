@@ -8,4 +8,7 @@
     <string name="address_label">Address</string>
     <string name="checked_label">Checked</string>
     <string name="edit_label">Edit</string>
+    <string name="save_label">Save</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="delete_label">Delete</string>
 </resources>

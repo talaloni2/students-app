@@ -1,5 +1,7 @@
 package com.example.studentsapp.activities;
 
+import static com.example.studentsapp.model.Consts.STUDENT_POSITION_KEY;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,12 +23,14 @@ public class ViewStudentActivity extends AppCompatActivity {
     private CheckBox isChecked;
     private Button edit;
     private Student student;
+    int studentPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student);
 
+        assignExtras();
         assignStudent();
 
         initializeComponents();
@@ -42,18 +46,24 @@ public class ViewStudentActivity extends AppCompatActivity {
         populateComponents();
     }
 
-    private void assignStudent() {
+    private void assignExtras() {
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
             throw new RuntimeException("Got no student for student view!");
         }
-        student = Students.getInstance().getStudent(extras.getInt("studentPosition"));
+        studentPosition = extras.getInt(STUDENT_POSITION_KEY);
+    }
+
+    private void assignStudent() {
+        student = Students.getInstance().getStudent(studentPosition);
     }
 
     private void setListeners() {
         isChecked.setOnClickListener(view -> student.setChecked(isChecked.isChecked()));
         edit.setOnClickListener(view -> {
-//            Intent intent = new Intent(getApplicationContext(), )
+            Intent intent = new Intent(getApplicationContext(), EditStudentActivity.class);
+            intent.putExtra(STUDENT_POSITION_KEY, studentPosition);
+            startActivity(intent);
         });
     }
 
@@ -64,7 +74,7 @@ public class ViewStudentActivity extends AppCompatActivity {
         address = findViewById(R.id.viewstudent_addressvalue);
         isChecked = findViewById(R.id.viewstudent_ischecked);
         edit = findViewById(R.id.viewstudent_edit);
-//        isChecked.setEnabled(false);
+        isChecked.setEnabled(false);
         populateComponents();
     }
 

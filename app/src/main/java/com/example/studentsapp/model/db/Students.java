@@ -32,4 +32,8 @@ public class Students {
     public void addStudent(Student student) {
         students.add(student);
     }
+
+    public void removeStudent(int pos) {
+        students.remove(pos);
+    }
 }
