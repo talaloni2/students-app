@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">studentsapp</string>
+    <string name="avatar_of_student">avatar of student</string>
+    <string name="default_textview_value">TextView</string>
 </resources>
