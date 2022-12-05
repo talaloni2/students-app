@@ -42,7 +42,10 @@ public class ViewStudentActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        assignStudent();
+        if (student.isDeleted()) {
+            finish();
+        }
+
         populateComponents();
     }
 

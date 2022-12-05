@@ -12,7 +12,7 @@ public class Students {
 
     private Students() {
         students = new ArrayList<>();
-        for(int i=0; i<20; i++) {
+        for(int i=0; i<3; i++) {
             students.add(new Student("id"+i, "Charmander"+i, false, "", ""));
         }
     }
@@ -35,5 +35,9 @@ public class Students {
 
     public void removeStudent(int pos) {
         students.remove(pos);
+    }
+
+    public int countStudents() {
+        return students.size();
     }
 }
