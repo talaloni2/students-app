@@ -77,25 +77,29 @@ public class EditStudentActivity extends AppCompatActivity {
 
         if(isAdding){
             setTitle("Add Student");
-            delete.setVisibility(View.INVISIBLE);
-            delete.setWidth(1);
-            ConstraintLayout constraintLayout = findViewById(R.id.editstudent_mainlayout);
-            ConstraintSet constraints = new ConstraintSet();
-            constraints.clone(constraintLayout);
-            constraints.removeFromHorizontalChain(R.id.editstudent_delete);
-            constraints.removeFromHorizontalChain(R.id.editstudent_cancel);
-            constraints.removeFromHorizontalChain(R.id.editstudent_save);
-            ((ViewGroup)delete.getParent()).removeView(delete);
-            constraints.addToHorizontalChain(R.id.editstudent_save, R.id.editstudent_cancel, R.id.editstudent_mainlayout);
-            constraints.addToHorizontalChain(R.id.editstudent_cancel, R.id.editstudent_mainlayout, R.id.editstudent_save);
-            constraints.setHorizontalBias(R.id.editstudent_save, 0.5f);
-            constraints.setHorizontalBias(R.id.editstudent_cancel, 0.5f);
-            
-
-            constraints.applyTo(constraintLayout);
+            modifyLayoutForAddition();
         }
 
         populateComponents();
+    }
+
+    private void modifyLayoutForAddition() {
+        ConstraintLayout constraintLayout = findViewById(R.id.editstudent_mainlayout);
+        ConstraintSet constraints = new ConstraintSet();
+        constraints.clone(constraintLayout);
+        constraints.removeFromHorizontalChain(R.id.editstudent_delete);
+        constraints.removeFromHorizontalChain(R.id.editstudent_cancel);
+        constraints.removeFromHorizontalChain(R.id.editstudent_save);
+        ((ViewGroup)delete.getParent()).removeView(delete);
+
+        constraints.connect(R.id.editstudent_cancel, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT);
+        constraints.connect(R.id.editstudent_save, ConstraintSet.LEFT, R.id.editstudent_cancel, ConstraintSet.RIGHT);
+        constraints.connect(R.id.editstudent_save, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT);
+
+        int[] viewIds = new int[]{R.id.editstudent_cancel, R.id.editstudent_save};
+        constraints.createHorizontalChain(ConstraintSet.PARENT_ID, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, viewIds, null, ConstraintSet.CHAIN_SPREAD);
+
+        constraints.applyTo(constraintLayout);
     }
 
     private void populateComponents() {
