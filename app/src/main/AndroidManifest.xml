@@ -13,13 +13,6 @@
         android:theme="@style/Theme.Studentsapp"
         tools:targetApi="31">
         <activity
-            android:name=".activities.AddStudentActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".activities.EditStudentActivity"
             android:exported="false"
             android:label="Edit Student">
