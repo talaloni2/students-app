@@ -8,12 +8,12 @@ import java.util.List;
 public class Students {
     private static final Students instance = new Students();
 
-    private List<Student> students;
+    private final List<Student> students;
 
     private Students() {
         students = new ArrayList<>();
         for(int i=0; i<20; i++) {
-            students.add(new Student("id"+i, "Charmander"+i, false));
+            students.add(new Student("id"+i, "Charmander"+i, false, "", ""));
         }
     }
 

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.studentsapp.R;
 import com.example.studentsapp.adapters.StudentListRowAdapter;
@@ -27,5 +29,11 @@ public class StudentsListActivity extends AppCompatActivity {
         studentsList.setLayoutManager(layoutManager);
         adapter = new StudentListRowAdapter(Students.getInstance().getStudents());
         studentsList.setAdapter(adapter);
+        adapter.setOnItemClickListener(pos -> {
+            Log.d("ItemClick", "Clicked item. Redirecting to view single activity");
+            Intent intent = new Intent(getApplicationContext(), ViewStudentActivity.class);
+            intent.putExtra("studentPosition", pos);
+            startActivity(intent);
+        });
     }
 }

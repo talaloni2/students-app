@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studentsapp.R;
 import com.example.studentsapp.adapters.viewholders.StudentRowViewHolder;
+import com.example.studentsapp.interfaces.OnStudentRowClickListener;
 import com.example.studentsapp.model.Student;
 
 import java.util.List;
 
 public class StudentListRowAdapter extends RecyclerView.Adapter<StudentRowViewHolder> {
     List<Student> students;
+    private OnStudentRowClickListener onItemClickListener;
 
     public StudentListRowAdapter(List<Student> students) {
         this.students = students;
@@ -24,7 +26,7 @@ public class StudentListRowAdapter extends RecyclerView.Adapter<StudentRowViewHo
     @Override
     public StudentRowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.students_list_row, parent, false);
-        return new StudentRowViewHolder(view);
+        return new StudentRowViewHolder(view, onItemClickListener);
     }
 
     @Override
@@ -36,5 +38,9 @@ public class StudentListRowAdapter extends RecyclerView.Adapter<StudentRowViewHo
     @Override
     public int getItemCount() {
         return students.size();
+    }
+
+    public void setOnItemClickListener(OnStudentRowClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 }

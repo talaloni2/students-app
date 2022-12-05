@@ -2,4 +2,10 @@
     <string name="app_name">studentsapp</string>
     <string name="avatar_of_student">avatar of student</string>
     <string name="default_textview_value">TextView</string>
+    <string name="name_label">Name</string>
+    <string name="id_label">ID</string>
+    <string name="phone_label">Phone</string>
+    <string name="address_label">Address</string>
+    <string name="checked_label">Checked</string>
+    <string name="edit_label">Edit</string>
 </resources>

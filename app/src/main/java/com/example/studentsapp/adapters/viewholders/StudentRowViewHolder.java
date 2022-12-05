@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studentsapp.R;
+import com.example.studentsapp.interfaces.OnStudentRowClickListener;
 import com.example.studentsapp.model.Student;
 import com.example.studentsapp.model.db.Students;
 
@@ -16,18 +17,32 @@ public class StudentRowViewHolder extends RecyclerView.ViewHolder {
     private TextView studentName;
     private TextView studentId;
     private CheckBox checked;
+    private OnStudentRowClickListener onClickListener;
 
-    public StudentRowViewHolder(@NonNull View itemView) {
+    public StudentRowViewHolder(@NonNull View itemView, OnStudentRowClickListener onClickListener) {
         super(itemView);
         studentId = itemView.findViewById(R.id.studentlistrow_idtv);
         studentName = itemView.findViewById(R.id.studentlistrow_nametv);
         checked = itemView.findViewById(R.id.studentlistrow_cb);
+        this.onClickListener = onClickListener;
 
-        checked.setOnClickListener(view -> {
-            int pos = (int)checked.getTag();
-            Student student = Students.getInstance().getStudent(pos);
-            student.setChecked(checked.isChecked());
-        });
+        checked.setOnClickListener(this::onCheckedClick);
+        itemView.setOnClickListener(this::onViewClick);
+    }
+
+    private void onViewClick(View view){
+        if (onClickListener != null) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                onClickListener.onClick(position);
+            }
+        }
+    }
+
+    private void onCheckedClick(View view) {
+        int pos = (int)checked.getTag();
+        Student student = Students.getInstance().getStudent(pos);
+        student.setChecked(checked.isChecked());
     }
 
 
