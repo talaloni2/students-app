@@ -1,11 +1,15 @@
 package com.example.studentsapp.activities;
 
+import static com.example.studentsapp.model.Consts.IS_ADDING_STUDENT_KEY;
 import static com.example.studentsapp.model.Consts.STUDENT_POSITION_KEY;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,6 +22,7 @@ public class EditStudentActivity extends AppCompatActivity {
 
     private int studentPosition;
     private Student student;
+    boolean isAdding;
 
     private EditText name;
     private EditText id;
@@ -48,10 +53,14 @@ public class EditStudentActivity extends AppCompatActivity {
             throw new RuntimeException("Got no student for student edit!");
         }
         studentPosition = extras.getInt(STUDENT_POSITION_KEY);
+        isAdding = extras.getBoolean(IS_ADDING_STUDENT_KEY, false);
     }
 
     private void assignStudent() {
-        student = Students.getInstance().getStudent(studentPosition);
+        if (isAdding){
+            student = new Student("", "", false, "", "");
+        }
+        else student = Students.getInstance().getStudent(studentPosition);
     }
 
     private void assignComponents() {
@@ -65,6 +74,27 @@ public class EditStudentActivity extends AppCompatActivity {
         save = findViewById(R.id.editstudent_save);
         cancel = findViewById(R.id.editstudent_cancel);
         delete = findViewById(R.id.editstudent_delete);
+
+        if(isAdding){
+            setTitle("Add Student");
+            delete.setVisibility(View.INVISIBLE);
+            delete.setWidth(1);
+            ConstraintLayout constraintLayout = findViewById(R.id.editstudent_mainlayout);
+            ConstraintSet constraints = new ConstraintSet();
+            constraints.clone(constraintLayout);
+            constraints.removeFromHorizontalChain(R.id.editstudent_delete);
+            constraints.removeFromHorizontalChain(R.id.editstudent_cancel);
+            constraints.removeFromHorizontalChain(R.id.editstudent_save);
+            ((ViewGroup)delete.getParent()).removeView(delete);
+            constraints.addToHorizontalChain(R.id.editstudent_save, R.id.editstudent_cancel, R.id.editstudent_mainlayout);
+            constraints.addToHorizontalChain(R.id.editstudent_cancel, R.id.editstudent_mainlayout, R.id.editstudent_save);
+            constraints.setHorizontalBias(R.id.editstudent_save, 0.5f);
+            constraints.setHorizontalBias(R.id.editstudent_cancel, 0.5f);
+            
+
+            constraints.applyTo(constraintLayout);
+        }
+
         populateComponents();
     }
 
@@ -89,6 +119,11 @@ public class EditStudentActivity extends AppCompatActivity {
         student.setId(id.getText().toString());
         student.setName(name.getText().toString());
         student.setPhone(phone.getText().toString());
+
+        if(isAdding){
+            Students.getInstance().addStudent(student);
+        }
+
         finish();
     }
 

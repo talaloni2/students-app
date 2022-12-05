@@ -1,5 +1,6 @@
 package com.example.studentsapp.activities;
 
+import static com.example.studentsapp.model.Consts.IS_ADDING_STUDENT_KEY;
 import static com.example.studentsapp.model.Consts.STUDENT_POSITION_KEY;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,8 +52,12 @@ public class StudentsListActivity extends AppCompatActivity {
         });
         add.setOnClickListener(view -> {
             isAdding.set(true);
-            Students.getInstance().addStudent(new Student("dsds", "fdsf", true, "dddd", "dfsdfsdfsf"));
-            adapter.notifyItemInserted(Students.getInstance().countStudents());
+            int currentPos = Students.getInstance().countStudents();
+            currentlyModifiedStudentPos.set(currentPos);
+            Intent intent = new Intent(getApplicationContext(), EditStudentActivity.class);
+            intent.putExtra(STUDENT_POSITION_KEY, currentPos);
+            intent.putExtra(IS_ADDING_STUDENT_KEY, true);
+            startActivity(intent);
         });
     }
 
@@ -62,7 +67,7 @@ public class StudentsListActivity extends AppCompatActivity {
         if (isEditing.get()) {
             handleEdit();
         }
-
+        else handleInsert();
     }
 
     private void handleEdit() {
@@ -76,6 +81,9 @@ public class StudentsListActivity extends AppCompatActivity {
     }
 
     private void handleInsert() {
-        isAdding.set(true);
+        if(Students.getInstance().countStudents() > currentlyModifiedStudentPos.get()){
+            adapter.notifyItemInserted(currentlyModifiedStudentPos.get());
+        }
+        isAdding.set(false);
     }
 }

@@ -13,22 +13,32 @@
         android:theme="@style/Theme.Studentsapp"
         tools:targetApi="31">
         <activity
-            android:name=".activities.EditStudentActivity"
+            android:name=".activities.AddStudentActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.EditStudentActivity"
+            android:exported="false"
+            android:label="Edit Student">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activities.ViewStudentActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="View Student">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activities.StudentsListActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Students List">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
