@@ -54,9 +54,7 @@ public class StudentsListActivity extends AppCompatActivity {
             isAdding.set(true);
             int currentPos = Students.getInstance().countStudents();
             currentlyModifiedStudentPos.set(currentPos);
-            Intent intent = new Intent(getApplicationContext(), EditStudentActivity.class);
-            intent.putExtra(STUDENT_POSITION_KEY, currentPos);
-            intent.putExtra(IS_ADDING_STUDENT_KEY, true);
+            Intent intent = new Intent(getApplicationContext(), AddStudentActivity.class);
             startActivity(intent);
         });
     }
@@ -67,7 +65,7 @@ public class StudentsListActivity extends AppCompatActivity {
         if (isEditing.get()) {
             handleEdit();
         }
-        else handleInsert();
+        else if(isAdding.get()) handleInsert();
     }
 
     private void handleEdit() {

@@ -1,7 +1,5 @@
 package com.example.studentsapp.activities;
 
-import static com.example.studentsapp.model.Consts.STUDENT_POSITION_KEY;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +12,8 @@ import com.example.studentsapp.R;
 import com.example.studentsapp.model.Student;
 import com.example.studentsapp.model.db.Students;
 
-public class EditStudentActivity extends AppCompatActivity {
+public class AddStudentActivity extends AppCompatActivity {
 
-    private int studentPosition;
     private Student student;
 
     private EditText name;
@@ -28,43 +25,32 @@ public class EditStudentActivity extends AppCompatActivity {
 
     private Button save;
     private Button cancel;
-    private Button delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_student);
+        setContentView(R.layout.activity_add_student);
 
-        assignExtras();
         assignStudent();
 
         assignComponents();
         assignListeners();
     }
 
-    private void assignExtras() {
-        Bundle extras = getIntent().getExtras();
-        if (extras == null) {
-            throw new RuntimeException("Got no student for student edit!");
-        }
-        studentPosition = extras.getInt(STUDENT_POSITION_KEY);
-    }
-
     private void assignStudent() {
-        student = Students.getInstance().getStudent(studentPosition);
+        student = new Student("", "", false, "", "");
     }
 
     private void assignComponents() {
-        name = findViewById(R.id.editstudent_namevalue);
-        id = findViewById(R.id.editstudent_idvalue);
-        phone = findViewById(R.id.editstudent_phonevalue);
-        address = findViewById(R.id.editstudent_addressvalue);
+        name = findViewById(R.id.addstudent_namevalue);
+        id = findViewById(R.id.addstudent_idvalue);
+        phone = findViewById(R.id.addstudent_phonevalue);
+        address = findViewById(R.id.addstudent_addressvalue);
 
-        checked = findViewById(R.id.editstudent_ischecked);
+        checked = findViewById(R.id.addstudent_ischecked);
 
-        save = findViewById(R.id.editstudent_save);
-        cancel = findViewById(R.id.editstudent_cancel);
-        delete = findViewById(R.id.editstudent_delete);
+        save = findViewById(R.id.addstudent_save);
+        cancel = findViewById(R.id.addstudent_cancel);
 
         populateComponents();
     }
@@ -80,7 +66,6 @@ public class EditStudentActivity extends AppCompatActivity {
 
     private void assignListeners() {
         save.setOnClickListener(this::onSaveClick);
-        delete.setOnClickListener(this::onDeleteClick);
         cancel.setOnClickListener(view -> finish());
     }
 
@@ -91,11 +76,9 @@ public class EditStudentActivity extends AppCompatActivity {
         student.setName(name.getText().toString());
         student.setPhone(phone.getText().toString());
 
+        Students.getInstance().addStudent(student);
+
         finish();
     }
 
-    private void onDeleteClick(View view) {
-        student.setDeleted(true);
-        finish();
-    }
 }
