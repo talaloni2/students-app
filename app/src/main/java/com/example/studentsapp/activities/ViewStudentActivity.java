@@ -35,6 +35,13 @@ public class ViewStudentActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        assignStudent();
+        populateComponents();
+    }
+
     private void assignStudent() {
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
@@ -44,6 +51,7 @@ public class ViewStudentActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
+        isChecked.setOnClickListener(view -> student.setChecked(isChecked.isChecked()));
         edit.setOnClickListener(view -> {
 //            Intent intent = new Intent(getApplicationContext(), )
         });
@@ -56,7 +64,7 @@ public class ViewStudentActivity extends AppCompatActivity {
         address = findViewById(R.id.viewstudent_addressvalue);
         isChecked = findViewById(R.id.viewstudent_ischecked);
         edit = findViewById(R.id.viewstudent_edit);
-        isChecked.setEnabled(false);
+//        isChecked.setEnabled(false);
         populateComponents();
     }
 

@@ -12,10 +12,13 @@ import com.example.studentsapp.R;
 import com.example.studentsapp.adapters.StudentListRowAdapter;
 import com.example.studentsapp.model.db.Students;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class StudentsListActivity extends AppCompatActivity {
     RecyclerView studentsList;
     RecyclerView.LayoutManager layoutManager;
     StudentListRowAdapter adapter;
+    AtomicInteger currentlyModifiedStudentPos = new AtomicInteger();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +33,17 @@ public class StudentsListActivity extends AppCompatActivity {
         adapter = new StudentListRowAdapter(Students.getInstance().getStudents());
         studentsList.setAdapter(adapter);
         adapter.setOnItemClickListener(pos -> {
+            currentlyModifiedStudentPos.set(pos);
             Log.d("ItemClick", "Clicked item. Redirecting to view single activity");
             Intent intent = new Intent(getApplicationContext(), ViewStudentActivity.class);
             intent.putExtra("studentPosition", pos);
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyItemChanged(currentlyModifiedStudentPos.get());
     }
 }
