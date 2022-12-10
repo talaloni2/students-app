@@ -6,15 +6,40 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/default_avatar"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/default_avatar"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studentsapp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AddStudentActivity"
+            android:exported="false"
+            android:label="Add Student">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.EditStudentActivity"
+            android:exported="false"
+            android:label="Edit Student">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.ViewStudentActivity"
+            android:exported="false"
+            android:label="View Student">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.StudentsListActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Students List">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

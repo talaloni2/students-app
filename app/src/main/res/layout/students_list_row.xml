@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="128dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/studentlistrow_avatar"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/avatar_of_student"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/default_avatar" />
+
+    <TextView
+        android:id="@+id/studentlistrow_nametv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_textview_value"
+        app:layout_constraintBottom_toTopOf="@+id/studentlistrow_idtv"
+        app:layout_constraintEnd_toStartOf="@+id/studentlistrow_cb"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@+id/studentlistrow_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/studentlistrow_idtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_textview_value"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/studentlistrow_cb"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/studentlistrow_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/studentlistrow_nametv" />
+
+    <CheckBox
+        android:id="@+id/studentlistrow_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="false"/>
+
+
+    <!--    <CheckBox-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
