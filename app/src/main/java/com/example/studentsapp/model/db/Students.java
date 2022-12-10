@@ -12,7 +12,7 @@ public class Students {
 
     private Students() {
         students = new ArrayList<>();
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<20; i++) {
             students.add(new Student("id"+i, "Charmander"+i, false, "", ""));
         }
     }
